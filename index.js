@@ -22,10 +22,9 @@ colorSensor.writeReg(0x8F, 0x00)
 // enable sensor -- register 0x80, value 0x01
 // followed by register 0x80, value 0x03
 colorSensor.writeReg(0x80, 0x01)
+colorSensor.writeReg(0x80, 0x03)
 
 setTimeout(() => {
-    colorSensor.writeReg(0x80, 0x03)
-
     // check status -- register 0x93, value should be 0x11
     let sensorStatus = colorSensor.readReg(0x93)
     console.log('Sensor status: ', sensorStatus)
@@ -34,4 +33,4 @@ setTimeout(() => {
     } else {
         console.log('Started!')
     }
-}, 3)
+}, 200)
