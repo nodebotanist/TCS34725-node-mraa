@@ -26,7 +26,7 @@ colorSensor.writeReg(0x80, 0x03)
 
 // check status -- register 0x93, value should be 0x11
 let sensorStatus = colorSensor.readReg(0x93)
-
+console.log('Sensor status: ', sensorStatus)
 if (sensorStatus !== 0x11) {
     throw new Error("Could not start TCS34725")
 } else {
