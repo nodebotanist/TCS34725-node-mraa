@@ -23,3 +23,12 @@ colorSensor.writeReg(0x8F, 0x00)
 // followed by register 0x80, value 0x03
 colorSensor.writeReg(0x80, 0x01)
 colorSensor.writeReg(0x80, 0x03)
+
+// check status -- register 0x93, value should be 0x11
+let sensorStatus = colorSensor.readReg(0x93)
+
+if (sensorStatus !== 0x11) {
+    throw new Error("Could not start TCS34725")
+} else {
+    console.log('Started!')
+}
