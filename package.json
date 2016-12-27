@@ -1,20 +1,23 @@
 {
-  "name": "TCS34725-node-mraa",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nodebotanist/TCS34725-node-mraa.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/nodebotanist/TCS34725-node-mraa/issues"
-  },
-  "homepage": "https://github.com/nodebotanist/TCS34725-node-mraa#readme"
+    "name": "TCS34725-node-mraa",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/nodebotanist/TCS34725-node-mraa.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/nodebotanist/TCS34725-node-mraa/issues"
+    },
+    "homepage": "https://github.com/nodebotanist/TCS34725-node-mraa#readme",
+    "dependencies": {
+        "mraa": "1.5.1"
+    }
 }
