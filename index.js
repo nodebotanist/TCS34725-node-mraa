@@ -2,7 +2,7 @@
 
 const mraa = require('mraa')
 const async = require('async')
-const barcli = require('barcli')
+const Barcli = require('barcli')
 
 const colorSensor = new mraa.I2c(1)
 
@@ -37,15 +37,40 @@ async.until(
 )
 
 let clear, red, green, blue
+let redGraph = new Barcli({
+    label: 'red',
+    range: [0, 255]
+})
+let greenGraph = new Barcli({
+    label: 'green',
+    range: [0, 255]
+})
+let blueGraph = new Barcli({
+    label: 'blue',
+    range: [0, 255]
+})
+
 setInterval(() => {
     // start sampling
     // clear channel-- low byte from 0x14, high from 0x15
     clear = colorSensor.readReg(0x95) << 4
     clear |= colorSensor.readReg(0x94)
-    console.log('Clear: ', clear)
 
     // red channel-- low byte 0x16, high byte 0x17
     red = colorSensor.readReg(0x97) << 4
     red |= colorSensor.readReg(0x96)
-    console.log('Red: ', red)
+    red = Math.floor((red * 255) / clear)
+    redGraph.update(red)
+
+    // green channel-- low byte 0x18, high byte 0x19
+    green = colorSensor.readReg(0x19) << 4
+    green |= colorSensor.readReg(0x18)
+    green = Math.floor((green * 255) / clear)
+    greenGraph.update(green)
+
+    // blue channel-- low byte 0x1A, high byte 0x1B
+    blue = colorSensor.readReg(0x1B) << 4
+    blue |= colorSensor.readReg(0x1A)
+    blue = Math.floor((blue * 255) / clear)
+    blueGraph.update(blue)
 }, 250)
