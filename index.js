@@ -1,6 +1,7 @@
 'use strict'
 
 const mraa = require('mraa')
+const async = require('async')
 
 const colorSensor = new mraa.I2c(1)
 
@@ -24,6 +25,14 @@ colorSensor.writeReg(0x8F, 0x00)
 colorSensor.writeReg(0x80, 0x01)
 colorSensor.writeReg(0x80, 0x03)
 
+let sensorStatus = null
+async.until(
+    () => sensorStatus == 0x11,
+    () => sensorStatus = colorSensor.readReg(0x93),
+    () => console.log('Started!')
+)
+
+/*
 setTimeout(() => {
     // check status -- register 0x93, value should be 0x11
     let sensorStatus = colorSensor.readReg(0x93)
@@ -34,3 +43,4 @@ setTimeout(() => {
         console.log('Started!')
     }
 }, 200)
+*/
