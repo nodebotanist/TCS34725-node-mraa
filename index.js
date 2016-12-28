@@ -32,6 +32,7 @@ async.until(
     () => console.log('Started!')
 )
 
+while (true) {}
 /*
 setTimeout(() => {
     // check status -- register 0x93, value should be 0x11
