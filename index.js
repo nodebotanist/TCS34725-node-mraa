@@ -2,6 +2,7 @@
 
 const mraa = require('mraa')
 const async = require('async')
+const barcli = require('barcli')
 
 const colorSensor = new mraa.I2c(1)
 
@@ -28,9 +29,19 @@ colorSensor.writeReg(0x80, 0x03)
 let sensorStatus = null
 async.until(
     () => sensorStatus == 0x11,
-    (cb) => { sensorStatus = colorSensor.readReg(0x93);
-        cb(null) },
+    (cb) => {
+        sensorStatus = colorSensor.readReg(0x93)
+        cb(null)
+    },
     () => console.log('Started!')
 )
 
-while (true) {}
+let clear, red, green, blue
+setInterval(() => {
+    // start sampling
+    // clear channel-- low byte from 0x14, high from 0x15
+    clear = colorSensor.readReg(0x15) << 4
+    clear |= colorSensor.readReg(0x14)
+    console.log('Clear: ', clear)
+
+}, 250)
