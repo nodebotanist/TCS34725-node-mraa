@@ -28,7 +28,7 @@ colorSensor.writeReg(0x80, 0x03)
 let sensorStatus = null
 async.until(
     () => sensorStatus == 0x11,
-    () => sensorStatus = colorSensor.readReg(0x93),
+    (cb) => { sensorStatus = colorSensor.readReg(0x93); cb(null) },
     () => console.log('Started!')
 )
 
