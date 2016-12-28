@@ -44,4 +44,8 @@ setInterval(() => {
     clear |= colorSensor.readReg(0x14)
     console.log('Clear: ', clear)
 
+    // red channel-- low byte 0x16, high byte 0x17
+    red = colorSensor.readReg(0x17) << 4
+    red |= colorSensor.readReg(0x16)
+    console.log('Red: ', red)
 }, 250)
