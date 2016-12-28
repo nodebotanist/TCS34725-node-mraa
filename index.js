@@ -40,12 +40,12 @@ let clear, red, green, blue
 setInterval(() => {
     // start sampling
     // clear channel-- low byte from 0x14, high from 0x15
-    clear = colorSensor.readReg(0x15) << 4
-    clear |= colorSensor.readReg(0x14)
+    clear = colorSensor.readReg(0x95) << 4
+    clear |= colorSensor.readReg(0x94)
     console.log('Clear: ', clear)
 
     // red channel-- low byte 0x16, high byte 0x17
-    red = colorSensor.readReg(0x17) << 4
-    red |= colorSensor.readReg(0x16)
+    red = colorSensor.readReg(0x97) << 4
+    red |= colorSensor.readReg(0x96)
     console.log('Red: ', red)
 }, 250)
