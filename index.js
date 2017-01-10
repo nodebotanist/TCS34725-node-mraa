@@ -37,45 +37,46 @@ async.until(
 )
 
 let clear, red, green, blue
-let clearGraph = new Barcli({
-    label: 'clear',
-    range: [0, 65335]
-})
-let redGraph = new Barcli({
-    label: 'red',
-    range: [0, 255]
-})
-let greenGraph = new Barcli({
-    label: 'green',
-    range: [0, 255]
-})
-let blueGraph = new Barcli({
-    label: 'blue',
-    range: [0, 255]
-})
+    /*let clearGraph = new Barcli({
+        label: 'clear',
+        range: [0, 65335]
+    })
+    let redGraph = new Barcli({
+        label: 'red',
+        range: [0, 255]
+    })
+    let greenGraph = new Barcli({
+        label: 'green',
+        range: [0, 255]
+    })
+    let blueGraph = new Barcli({
+        label: 'blue',
+        range: [0, 255]
+    })*/
 
 setInterval(() => {
     // start sampling
     // clear channel-- low byte from 0x14, high from 0x15
     clear = colorSensor.readReg(0x95) << 8
     clear |= colorSensor.readReg(0x94)
-    clearGraph.update(clear)
+        //clearGraph.update(clear)
 
     // red channel-- low byte 0x16, high byte 0x17
     red = colorSensor.readReg(0x97) << 8
     red |= colorSensor.readReg(0x96)
     red = Math.floor((red * 255) / clear)
-    redGraph.update(red)
+        //redGraph.update(red)
 
     // green channel-- low byte 0x18, high byte 0x19
     green = colorSensor.readReg(0x99) << 8
     green |= colorSensor.readReg(0x98)
     green = Math.floor((green * 255) / clear)
-    greenGraph.update(green)
+        //greenGraph.update(green)
 
     // blue channel-- low byte 0x1A, high byte 0x1B
     blue = colorSensor.readReg(0x9B) << 8
     blue |= colorSensor.readReg(0x9A)
     blue = Math.floor((blue * 255) / clear)
-    blueGraph.update(blue)
+        //blueGraph.update(blue)
+    console.log(clear, red, green, blue)
 }, 250)
