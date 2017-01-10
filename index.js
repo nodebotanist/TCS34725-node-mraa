@@ -68,8 +68,8 @@ for (let i = 0; i < 256; i++) {
 setInterval(() => {
     // start sampling
     // clear channel-- low byte from 0x14, high from 0x15
-    // clear = colorSensor.readReg(0x95) << 8
-    clear = colorSensor.readReg(0x94)
+    clear = colorSensor.readReg(0x95) << 8
+    clear |= colorSensor.readReg(0x94)
     clearGraph.update(clear)
 
     // red channel-- low byte 0x16, high byte 0x17
