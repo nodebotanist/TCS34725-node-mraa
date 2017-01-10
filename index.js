@@ -76,17 +76,17 @@ setInterval(() => {
     // red = colorSensor.readReg(0x97) << 8
     red = colorSensor.readReg(0x96)
         // red = Math.floor((red * 255) / clear)
-    redGraph.update(gammaTable[red])
+    redGraph.update(red)
 
     // green channel-- low byte 0x18, high byte 0x19
     // green = colorSensor.readReg(0x99) << 8
     green = colorSensor.readReg(0x98)
         // green = Math.floor((green * 255) / clear)
-    greenGraph.update(gammaTable[green])
+    greenGraph.update(green)
 
     // blue channel-- low byte 0x1A, high byte 0x1B
     //blue = colorSensor.readReg(0x9B) << 8
     blue = colorSensor.readReg(0x9A)
         // blue = Math.floor((blue * 255) / clear)
-    blueGraph.update(gammaTable[blue])
+    blueGraph.update(blue)
 }, 250)
