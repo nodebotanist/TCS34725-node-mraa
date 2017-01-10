@@ -19,7 +19,7 @@ if (idRegValue !== 0x44) {
 colorSensor.writeReg(0x81, 0xEB)
 
 // set sensor gain -- register 0x8F, value 0x00
-colorSensor.writeReg(0x8F, 0x01)
+colorSensor.writeReg(0x8F, 0x00)
 
 // enable sensor -- register 0x80, value 0x01
 // followed by register 0x80, value 0x03
